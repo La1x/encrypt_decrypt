@@ -23,15 +23,15 @@ public class RSA {
         d = e.modInverse(m);
     }
 
-    public synchronized String encrypt(String message) {
+    public String encrypt(String message) {
         return (new BigInteger(message.getBytes())).modPow(e, n).toString();
     }
 
-    public synchronized String decrypt(String message) {
+    public String decrypt(String message) {
         return new String((new BigInteger(message)).modPow(d, n).toByteArray());
     }
 
-    public synchronized void generateKeys() {
+    public void generateKeys() {
         SecureRandom r = new SecureRandom();
         BigInteger p = new BigInteger(bitlen / 2, 100, r);
         BigInteger q = new BigInteger(bitlen / 2, 100, r);
@@ -45,11 +45,11 @@ public class RSA {
         d = e.modInverse(m);
     }
 
-    public synchronized BigInteger getN() {
+    public BigInteger getN() {
         return n;
     }
 
-    public synchronized BigInteger getE() {
+    public BigInteger getE() {
         return e;
     }
 
